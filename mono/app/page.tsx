@@ -1,92 +1,73 @@
-import NextLogo from "@/components/next-logo";
-import { Button } from "@/components/ui/button";
-import UpdateLogo from "@/components/update-logo";
-import Link from "next/link";
+import { CharacterCard } from '@/components/character-card';
+import { characters } from '@/data/characters';
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center justify-center px-4 py-16">
-      <div className="mx-auto max-w-xl flex flex-col">
-        <div className="flex gap-8 justify-start w-full items-center">
-          <a
-            href="https://update.dev/?utm_source=create-update-app&utm_medium=template&utm_term=nextjs"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <UpdateLogo className="w-[128px]" />
-          </a>
-          <span className="border-l rotate-45 h-6" />
-          <a href="https://nextjs.org/" target="_blank" rel="noreferrer">
-            <NextLogo />
-          </a>
-        </div>
-        <p className="text-3xl lg:text-4xl !leading-tight mt-4">
-          Build software faster with{" "}
-          <a
-            href="https://update.dev/?utm_source=create-update-app&utm_medium=template&utm_term=nextjs"
-            target="_blank"
-            className="font-bold hover:underline"
-            rel="noreferrer"
-          >
-            Update
-          </a>{" "}
-          and{" "}
-          <a
-            href="https://nextjs.org/"
-            target="_blank"
-            className="font-bold hover:underline"
-            rel="noreferrer"
-          >
-            Next.js
-          </a>
-        </p>
-        <p className="text-muted-foreground mt-4">
-          To see your account, plans, and more, sign in or sign up to gain
-          access to the protected page. Make sure to set your .env file before
-          signing in.
-        </p>
-        <div className="flex gap-[8px] mt-4">
-          <Button asChild className="mt-4 w-fit">
-            <Link href="/sign-in">Sign in</Link>
-          </Button>
-          <Button variant="outline" asChild className="mt-4 w-fit">
-            <Link href="/sign-up">Sign up</Link>
-          </Button>
-        </div>
-        <div className="h-[1px] w-full bg-border my-12" />
-        <div className="grid grid-cols-2 gap-4">
-          <div className="border rounded-lg p-4">
-            <h3 className="font-medium mb-2">Join Our Community</h3>
-            <p className="text-sm text-muted-foreground mb-3">
-              Get help, share your work, and connect with other developers.
-            </p>
-            <Button variant="secondary" asChild size="sm">
-              <a
-                href="https://discord.gg/Guege5tXFK"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Join Discord
-              </a>
-            </Button>
-          </div>
-          <div className="border rounded-lg p-4">
-            <h3 className="font-medium mb-2">Read the Docs</h3>
-            <p className="text-sm text-muted-foreground mb-3">
-              Learn how to build amazing apps with our documentation.
-            </p>
-            <Button variant="secondary" asChild size="sm">
-              <a
-                href="https://update.dev/docs"
-                target="_blank"
-                rel="noreferrer"
-              >
-                View Documentation
-              </a>
-            </Button>
+    <>
+      <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className="container flex h-16 items-center">
+          <div className="flex items-center gap-2">
+            <span className="text-2xl">💕</span>
+            <span className="font-semibold text-lg">AI Companions</span>
           </div>
         </div>
-      </div>
+      </header>
+      <div className="min-h-screen">
+      {/* Hero Section */}
+      <section className="px-4 py-16 text-center">
+        <h1 className="text-4xl md:text-6xl font-bold mb-4">
+          Meet Your AI Companion
+        </h1>
+        <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
+          Choose from a variety of personalities and start meaningful conversations.
+          Each companion has their own unique traits, interests, and conversation style.
+        </p>
+      </section>
+
+      {/* Characters Grid */}
+      <section className="px-4 pb-16">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-2xl font-semibold text-center mb-8">
+            Choose Your Companion
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {characters.map((character) => (
+              <CharacterCard key={character.id} character={character} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="px-4 py-16 bg-secondary/20">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl font-bold mb-8">Why Choose Our AI Companions?</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+              <div className="text-4xl mb-4">💬</div>
+              <h3 className="text-xl font-semibold mb-2">Natural Conversations</h3>
+              <p className="text-muted-foreground">
+                Advanced AI technology ensures engaging and natural conversations
+              </p>
+            </div>
+            <div>
+              <div className="text-4xl mb-4">🎭</div>
+              <h3 className="text-xl font-semibold mb-2">Unique Personalities</h3>
+              <p className="text-muted-foreground">
+                Each companion has distinct traits and conversation styles
+              </p>
+            </div>
+            <div>
+              <div className="text-4xl mb-4">🔒</div>
+              <h3 className="text-xl font-semibold mb-2">Private & Secure</h3>
+              <p className="text-muted-foreground">
+                Your conversations are private and securely encrypted
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
+    </>
   );
 }

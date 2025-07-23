@@ -1,128 +1,177 @@
-<a href="https://nextjs-supabase-stripe-update.vercel.app">
-  <img alt="Update – Vercel Next.js Template" src="https://images.update.dev/nextjs-supabase-stripe-update-template-thumbnail.png">
-  <h1 align="center">Update + Next.js Template</h1>
-</a>
+# AI Girlfriend Chat Application - NextJS Frontend
 
-<p align="center">
-  A full-featured SaaS starter with auth, billing, and entitlements—powered by <a href="https://update.dev">Update</a> and <a href="https://nextjs.org/">Next.js</a>.
-</p>
+A modern, responsive frontend for an AI girlfriend chat application built with Next.js, TypeScript, and Tailwind CSS. This frontend is designed to integrate seamlessly with a Python backend for AI-powered conversations.
 
-<p align="center">
-  <a href="#features"><strong>Features</strong></a> ·
-  <a href="#demo"><strong>Demo</strong></a> ·
-  <a href="#deploy-to-vercel"><strong>Deploy to Vercel</strong></a> ·
-  <a href="#local-setup"><strong>Local Setup</strong></a> ·
-  <a href="#support"><strong>Support</strong></a>
-</p>
+## Features
 
----
+- 🎭 **Multiple AI Personalities** - Choose from 6 unique AI companions, each with distinct personalities, traits, and conversation styles
+- 💬 **Real-time Chat Interface** - Smooth, responsive chat experience with message history
+- 🎨 **Beautiful UI** - Modern, clean design with dark mode support
+- 📱 **Fully Responsive** - Works perfectly on desktop, tablet, and mobile devices
+- 🔌 **Python Backend Ready** - Easy integration with any Python-based AI backend
+- ⚡ **Fast & Optimized** - Built with Next.js 14 and optimized for performance
 
-## ⚡ Features
+## Character Showcase
 
-- 💳 **Subscriptions** — Stripe billing with checkout, portals, trials, and failed payment recovery
-- 🔐 **Authentication** — Supabase auth with Update-powered extensions (e.g., magic links, redirects)
-- 🔓 **Entitlements** — Easy access control by plan, org, or user role
-- ⚙️ **Full-stack ready** — App Router, Middleware, Client, and Server usage supported
-- 🎨 **UI** — Built with [Tailwind CSS](https://tailwindcss.com) and [shadcn/ui](https://ui.shadcn.com)
+The home page displays all available AI companions with:
+- Character avatars and names
+- Personality traits and interests
+- Interactive trait meters (humor, intelligence, empathy, playfulness)
+- Quick bio and conversation style preview
 
----
+## Quick Start
 
-## 🔗 Demo
+### Prerequisites
 
-Live demo: [nextjs-supabase-stripe-update.vercel.app](https://nextjs-supabase-stripe-update.vercel.app/)
+- Node.js 18+ installed
+- Python 3.8+ (for the backend)
+- npm or yarn package manager
 
----
+### Frontend Setup
 
-## 🚀 Deploy to Vercel
-
-Click the button below to instantly deploy the template and set up Update and Supabase:
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fupdatedotdev%2Fnextjs-supabase-stripe-update&project-name=update-nextjs-template&repository-name=update-nextjs-template&demo-title=Update%20SaaS%20Starter&demo-description=A%20Next.js%20starter%20with%20Update%20for%20auth%2C%20billing%2C%20and%20orgs&demo-url=https%3A%2F%2Fvercel-update-template.vercel.app&external-id=https%3A%2F%2Fupdate.dev)
-
----
-
-## 🛠️ Local Setup
-
-### 1. Clone the project
-
+1. Clone the repository and navigate to the project:
 ```bash
-git clone https://github.com/updatedotdev/nextjs-supabase-stripe-update.git cd nextjs-supabase-stripe-update
+cd mono
 ```
 
-### 2. Install dependencies
-
+2. Install dependencies:
 ```bash
 npm install
 ```
 
-# or
-
-```bash
-pnpm install
-```
-
-### 3. Configure environment variables
-
-Create a `.env.local` file based on the provided example:
-
+3. Copy the environment example file:
 ```bash
 cp .env.example .env.local
 ```
 
-Fill in values from:
-
-- [Update dashboard](https://update.dev)
-- [Supabase project settings](https://app.supabase.com/project/_/settings/api)
-
-```bash
-NEXT_PUBLIC_UPDATE_PUBLIC_KEY=...
-NEXT_PUBLIC_SUPABASE_URL=...
-NEXT_PUBLIC_SUPABASE_ANON_KEY=...
-```
-
-### 4. Run the dev server
-
+4. Start the development server:
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser to view the app.
+5. Open [http://localhost:3000](http://localhost:3000) to see the application
 
----
+### Python Backend Setup (Example)
 
-## 📦 What's Included
+1. Install FastAPI and dependencies:
+```bash
+pip install fastapi uvicorn pydantic python-multipart
+```
 
-- 🔌 **Update Client Setup**:
-  - `utils/update/client.ts` — for browser-side usage
-  - `utils/update/server.ts` — for server-side usage
-- 🧠 **Entitlements Checks**:
-  - Example usage of `client.entitlements.check()` to conditionally render UI
-- 💳 **Billing Integration**:
-  - Stripe Checkout & Customer Portal
-  - Cancel/reactivate subscriptions
-  - Usage-based plans (coming soon)
+2. Run the example backend:
+```bash
+python example-python-backend.py
+```
 
----
+The example backend will start at [http://localhost:8000](http://localhost:8000)
 
-## 🧩 Tech Stack
+## Python Backend Integration
 
-- [Next.js](https://nextjs.org)
-- [Update](https://update.dev)
-- [Supabase](https://supabase.com)
-- [Stripe](https://stripe.com)
-- [Tailwind CSS](https://tailwindcss.com)
-- [shadcn/ui](https://ui.shadcn.com)
+Your Python backend should implement a `/chat` endpoint that accepts:
 
----
+```json
+{
+  "message": "User's message",
+  "character_id": "character-unique-id",
+  "character_context": {
+    "name": "Character name",
+    "personality": ["trait1", "trait2"],
+    "traits": {
+      "humor": 7,
+      "intelligence": 9,
+      "empathy": 8,
+      "playfulness": 6
+    },
+    "conversationStyle": "Description",
+    "interests": ["interest1", "interest2"]
+  },
+  "conversation_history": [
+    {
+      "role": "user" | "assistant",
+      "content": "message content"
+    }
+  ]
+}
+```
 
-## 🤝 Support
+And return:
+```json
+{
+  "response": "AI generated response"
+}
+```
 
-- 📚 [Full documentation](https://update.dev/docs)
-- 💬 [Join our Discord](https://discord.gg/Guege5tXFK)
-- 🐛 Found a bug? [Open an issue](https://github.com/updatedotdev/nextjs-supabase-stripe-update/issues)
+See `PYTHON_BACKEND_INTEGRATION.md` for detailed integration guide and example implementation.
 
----
+## Project Structure
 
-## 📄 License
+```
+mono/
+├── app/                    # Next.js app directory
+│   ├── page.tsx           # Home page with character showcase
+│   ├── chat/[characterId] # Dynamic chat pages
+│   └── api/chat          # API route for backend integration
+├── components/            # React components
+│   ├── character-card.tsx # Character display cards
+│   └── chat-interface.tsx # Chat UI component
+├── data/                  # Mock character data
+├── types/                 # TypeScript type definitions
+└── example-python-backend.py # Example Python backend
+```
 
-MIT
+## Customization
+
+### Adding New Characters
+
+Edit `data/characters.ts` to add new AI companions:
+
+```typescript
+{
+  id: 'unique-id',
+  name: 'Character Name',
+  age: 25,
+  personality: ['Trait1', 'Trait2'],
+  bio: 'Character description',
+  avatar: '🎭',
+  greeting: 'Initial greeting message',
+  traits: {
+    humor: 8,
+    intelligence: 7,
+    empathy: 9,
+    playfulness: 6
+  },
+  conversationStyle: 'Description of conversation style',
+  interests: ['Interest1', 'Interest2'],
+  relationshipDynamic: 'caring'
+}
+```
+
+### Styling
+
+The app uses Tailwind CSS with a custom theme. Modify `app/globals.css` to change colors, fonts, or other styling aspects.
+
+## Production Deployment
+
+1. Update `PYTHON_BACKEND_URL` in your environment variables to point to your production Python backend
+
+2. Build the application:
+```bash
+npm run build
+```
+
+3. Deploy to your preferred platform (Vercel, Netlify, etc.)
+
+## Tech Stack
+
+- **Frontend**: Next.js 14, TypeScript, Tailwind CSS
+- **UI Components**: Custom components with shadcn/ui inspiration
+- **State Management**: React hooks
+- **Backend Integration**: REST API with fetch
+
+## License
+
+MIT License - feel free to use this for your own projects!
+
+## Support
+
+For questions or issues, please open an issue in the repository.

@@ -12,8 +12,8 @@ const defaultUrl = process.env.VERCEL_URL
 
 export const metadata: Metadata = {
   metadataBase: new URL(defaultUrl),
-  title: "Next.js and Update Starter Kit",
-  description: "The fastest way to build apps with Next.js and Update",
+  title: "AI Companions - Chat with Your Perfect AI Girlfriend",
+  description: "Experience meaningful conversations with diverse AI companions. Each with unique personalities, interests, and conversation styles.",
 };
 
 export default function RootLayout({
@@ -25,7 +25,6 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <ThemeProvider attribute="class" disableTransitionOnChange>
-          <Header />
           {children}
         </ThemeProvider>
       </body>
